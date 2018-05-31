@@ -1,0 +1,26 @@
+- name: Transfer and execute a script.
+  hosts: all
+  remote_user: admin
+  become: yes
+  tasks:
+     - name: Transfer the script
+       copy: src=server-minimal.sh dest=/tmp/ mode=777
+
+     #- name: Transfer the ssh config
+      # copy: src=config dest=/root/.ssh/ mode=644
+
+     - name:  Execute the script 
+       script: server-minimal.sh >>taroutput.txt
+       args:
+        chdir: /tmp
+      #Storing in a path relative to the playbook
+    # - name: Fetching for branch status 
+    #   fetch:
+    #    src: /var/tmp/stash_logs/1.tar
+    #    dest: /Users/kszm146/git-codebases/stash_commits/output/tar-{{ inventory_hostname }}.tar
+     #   flat: yes
+     - name: Fetching Outputs
+       fetch:
+        src: /tmp/taroutput.txt
+        dest: /Users/kszm146/git-codebases/stash_commits/servers-{{ inventory_hostname }}
+        flat: yes
