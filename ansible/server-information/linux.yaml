@@ -17,10 +17,10 @@
     # - name: Fetching for branch status 
     #   fetch:
     #    src: /var/tmp/stash_logs/1.tar
-    #    dest: /Users/kszm146/git-codebases/stash_commits/output/tar-{{ inventory_hostname }}.tar
+    #    dest: /Users/home/git-codebases/stash_commits/output/tar-{{ inventory_hostname }}.tar
      #   flat: yes
      - name: Fetching Outputs
        fetch:
         src: /tmp/taroutput.txt
-        dest: /Users/kszm146/git-codebases/stash_commits/servers-{{ inventory_hostname }}
+        dest: /Users/home/git-codebases/stash_commits/servers-{{ inventory_hostname }}
         flat: yes
